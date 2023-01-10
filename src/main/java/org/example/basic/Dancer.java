@@ -2,7 +2,7 @@ package org.example.basic;
 
 import static org.example.basic.DanceLevel.*;
 
-public class Dancer extends Object{
+public abstract class Dancer extends Object{
 
     public Dancer(){
         this("기본크루", "이름없음");
@@ -43,17 +43,7 @@ public class Dancer extends Object{
     }
 
     // 춤추기
-    public void dance() {
-
-        stretch();
-        makeFlexible();
-
-        if (!flexible) {
-            System.out.println("유연성 운동 안해서 죽었습니다.");
-            return;
-        }
-        System.out.println(myName + "님이 춤을 춥니다.");
-    }
+    public abstract void dance();
 
     public String getCrewName() {
         return crewName;
