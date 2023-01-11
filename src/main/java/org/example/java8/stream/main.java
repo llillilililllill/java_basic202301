@@ -42,7 +42,7 @@ public class main {
     public static List<String> getHealthyDishName2(List<Dish> menu) {
         return menu.stream()
                 .filter(d -> d.getCalories() < 400)
-                .sorted(Comparator.comparing(Dish::getCalories))
+                .sorted(Comparator.comparing(dish -> dish.getCalories()))
                 .map(Dish::getName)
                 .collect(Collectors.toList());
 
@@ -53,7 +53,7 @@ public class main {
         System.out.println("dishName1 = " + dishName1);
         System.out.println();
 
-        List<String> dishName2 = getHealthyDishName1(Dish.menu);
+        List<String> dishName2 = getHealthyDishName2(Dish.menu);
         System.out.println("dishName2 = " + dishName2);
     }
 }
