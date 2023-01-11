@@ -1,36 +1,42 @@
 package org.example;
 
-import org.example.basic.Dancer;
-import org.example.inherit.StreetDancer;
-import org.example.inherit.idolDancer;
-import org.example.poly.PerformanceTeam;
+import org.example.beans.Goods;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
 
-        idolDancer idolDancer = new idolDancer("IU", "이지은" );
+        Goods goods1 = new Goods("세탁기", 30000);
+        Goods goods2 = new Goods("세탁기", 30000);
 
-        StreetDancer streetDancer = new StreetDancer("길거리춤꾼", "박항서");
+        // soutv
+        System.out.println("goods1 = " + goods1);
+        System.out.println("goods2 = " + goods2);
+        // System.out.println(goods1.hashCode());
 
-        idolDancer.dance();
+        System.out.println("goods1 equals goods2 = " + goods1.equals(goods2));
         System.out.println();
 
-        streetDancer.dance();
-
-        Dancer idoldancer1 = new idolDancer("아이돌팀1", "아이돌1");
-        Dancer idoldancer2 = new idolDancer("아이돌팀2", "아이돌2");
-        Dancer idoldancer3 = new idolDancer("아이돌팀3", "아이돌3");
-
-        Dancer Streetdancer1 = new StreetDancer("스트릿댄서1", "스트릿1");
-        Dancer Streetdancer2 = new StreetDancer("스트릿댄서2", "스트릿2");
-        Dancer Streetdancer3 = new StreetDancer("스트릿댄서3", "스트릿3");
-
-        PerformanceTeam Team = new PerformanceTeam();
-
-        Team.joinDancer(idoldancer1);
-        Team.joinDancer(Streetdancer1);
+        Set<String> set1 = new  HashSet<>();
+        set1.add("짜장면");
+        set1.add("짬뽕");
+        set1.add("짜장면");
+        
+        System.out.println("set1 = " + set1);
+        System.out.println("set1.size() = " + set1.size());
         System.out.println();
 
-        Team.groupDance();
+        Set<Goods> set2 = new HashSet<>();
+        set2.add(goods1);
+        set2.add(goods2);
+
+        System.out.println("set2 = " + set2);
+        System.out.println("set2.size() = " + set2.size());
+        System.out.println();
+
+        System.out.println(goods1.hashCode());
+        System.out.println(goods2.hashCode());
     }
 }
