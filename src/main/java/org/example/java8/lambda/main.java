@@ -1,5 +1,10 @@
 package org.example.java8.lambda;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.List;
 
 import static org.example.java8.lambda.Color.*;
@@ -96,5 +101,47 @@ public class main {
         // 짝수만 필터링
         List<Integer> evenNumbers = filter(numbers, n -> n % 2 == 0);
         System.out.println(evenNumbers);
+        System.out.println();
+
+        /**
+         * 리스트와 변경조건을 전달하면 리스트 내부의 값을 변경조건에 따라
+         * 변환한 뒤 반환하는 map이라는 메서드를 구현해보세요.
+         *
+         * ex) map(appleList, apple -> apple.setColor(RED))
+         *
+         * => 모든 사과가 빨강색으로 변해야 한다.
+         */
+
+        // 사과 리스트에서 사과의 색상만 추출하여 새로운 색상리스트를 반환
+        List<Color> colorList = map(appleList, Apple::getColor);
+        System.out.println("colorList = " + colorList);
+        System.out.println();
+
+        List<Integer> weightList = map(appleList, Apple::getWeight);
+        System.out.println("weightList = " + weightList);
+        System.out.println();
+
+        List<AppleInfo> appleInfos =
+                map(appleList, a -> new AppleInfo(a.getColor(), a.getWeight()));
+        System.out.println("appleInfos = " + appleInfos);
+        System.out.println();
+
+        // 전체 사과색 변경
+        List<Apple> yellows = map(appleList, a -> {
+            a.setColor(YELLOW);
+            return a;
+        });
+        for (Apple yellow : yellows) {
+            System.out.println(yellow);
+        }
+        System.out.println();
+    }
+
+    // 사과에서 필요한 데이터 몇개만 추출
+    @Getter @NoArgsConstructor
+    @ToString @AllArgsConstructor
+    public static class AppleInfo {
+        private Color color;
+        private int weight;
     }
 }

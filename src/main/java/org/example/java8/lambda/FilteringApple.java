@@ -75,5 +75,16 @@ public class FilteringApple {
             }
         }
         return result;
+
+
+    }
+
+    public static <T, R> List<R> map(List<T> list, GenericFunction<T, R> mapper) {
+        List<R> result = new ArrayList<>();
+        for (T t : list) {
+            R r = mapper.apply(t);
+            result.add(r);
+        }
+        return result;
     }
 }
