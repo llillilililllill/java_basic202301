@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.awt.SystemColor.menu;
+
 public class main {
     /*
         요리 목록에서 칼로리가 400칼로리보다 작은 요리들만 추출해서
@@ -39,7 +41,7 @@ public class main {
     }
 
     // 스트림을 사용한 코드
-    public static List<String> getHealthyDishName2(List<Dish> menu) {
+    public static List<String> getHealthyDishName2(List<Dish> m0enu) {
         return menu.stream()
                 .filter(d -> d.getCalories() < 400)
                 .sorted(Comparator.comparing(dish -> dish.getCalories()))
