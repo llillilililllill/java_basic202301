@@ -41,21 +41,12 @@ public class main {
     }
 
     // 스트림을 사용한 코드
-    public static List<String> getHealthyDishName2(List<Dish> m0enu) {
-        return menu.stream()
-                .filter(d -> d.getCalories() < 400)
-                .sorted(Comparator.comparing(dish -> dish.getCalories()))
-                .map(Dish::getName)
-                .collect(Collectors.toList());
 
-    }
     public static void main(String[] args) {
         
         List<String> dishName1 = getHealthyDishName1(Dish.menu);
         System.out.println("dishName1 = " + dishName1);
         System.out.println();
 
-        List<String> dishName2 = getHealthyDishName2(Dish.menu);
-        System.out.println("dishName2 = " + dishName2);
     }
 }

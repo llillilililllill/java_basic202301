@@ -2,9 +2,11 @@ package org.example.java8.stream.practice;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.lang.System.out;
+import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
 
 public class main {
@@ -27,7 +29,7 @@ public class main {
         // 연습 1: 2021년에 발생한 모든 거래를 찾아 거래액 오름차 정렬(작은 값에서 큰값).
         transactions.stream()
                 .filter(transaction -> transaction.getYear() == 2021)
-                .sorted(Comparator.comparing(Transaction::getValue))
+                .sorted(comparing(Transaction::getValue))
                 .collect(toList())
                 .forEach(out::println);
         out.println("=================================================");
@@ -45,7 +47,7 @@ public class main {
                 .map(t -> t.getTrader())
                 .filter(td -> td.getCity().equals("Cambridge"))
                 .distinct()
-                .sorted(Comparator.comparing(Trader::getName))
+                .sorted(comparing(Trader::getName))
                 .collect(toList())
                 .forEach(out::println);
         out.println("=================================================");
@@ -57,5 +59,38 @@ public class main {
                 .collect(toList())
                 .forEach(out::println);
 
+        out.println("=================================================");
+
+        // 연습 5: Milan에 거주하는 거래자가 한명이라도 있는지 여부 확인?
+        boolean flag1 = transactions.stream()
+                        .anyMatch(p -> p.getTrader().getCity().equals("Milan"));
+        out.println("flag1 = " + flag1);
+
+        out.println("=================================================");
+
+        // 연습 6: Cambridge에 사는 거래자의 모든 거래액의 총합 출력.
+        int sum = transactions.stream()
+                .filter(t -> t.getTrader().getCity().equals("Cambridge"))
+                .mapToInt(Transaction::getValue)
+                .sum();
+        out.println("sum = " + sum);
+
+        out.println("=================================================");
+
+        // 연습 7: 모든 거래에서 최고거래액은 얼마인가?
+        int maxValue = transactions.stream()
+                .mapToInt(t -> t.getValue())
+                .max()
+                .getAsInt();
+
+        out.println("maxValue = " + maxValue);
+
+        out.println("=================================================");
+
+        // 연습 8. 가장 작은 거래액을 가진 고래정보 탐색
+        Optional<Transaction> smallestTransaction = transactions.stream()
+                .min(comparing(Transaction::getValue));
+
+        smallestTransaction.ifPresent(out::println);
     }
 }
